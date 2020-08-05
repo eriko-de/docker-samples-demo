@@ -1,0 +1,18 @@
+version: "2.4"
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    stdin_open: true
+    tty: true
+    volumes:
+      - type: bind
+        source: ./static-html-directory
+        target: /www/data
+        consistency: cached
+    ports:
+      - "8080:80"
+  # date-echo:
+  #   image: ubuntu
+  #   command: bash -c "while true; do date; sleep 1; done"
